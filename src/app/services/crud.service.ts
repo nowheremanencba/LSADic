@@ -12,8 +12,8 @@ export class CrudService {
   ) { }
 
 
-  create_NewStudent(record) {
-    return this.firestore.collection('Students').add(record);
+  create_NewVideo(record) {
+    return this.firestore.collection('Videos').add(record);
   }
 
   read_Students() {

@@ -16,17 +16,19 @@
         </ion-item>
       <ion-item>
         <ion-input placeholder="Url" [(ngModel)]="videoURL"></ion-input>
-      </ion-item>
+      </ion-item> 
       <ion-item>
-        <ion-input placeholder="Categoria" [(ngModel)]="videoCategoria"></ion-input>
-      </ion-item>
+        <ion-select [(ngModel)]="categoriaSelected" ok-text="Aceptar" cancel-text="Cancelar" placeholder="Categoria" >
+            <ion-select-option value="item" *ngFor="let item of categorias">{{item.nombre}}</ion-select-option> 
+        </ion-select>
+      </ion-item> 
     </ion-col>
     </ion-row>
     <ion-row>
       <ion-col text-center>
-        <ion-button (click)="CreateRecord()" [disabled]="!studentName || !studentAge || !studentAddress">
+        <ion-button (click)="CreateRecord()" [disabled]="!videoNombre || !videoURL || !categoriaSelected">
           <ion-icon size="small" slot="icon-only" name="add"></ion-icon>
-          &nbsp;Create Record
+          &nbsp;Agregar Video
         </ion-button>
       </ion-col>
     </ion-row>

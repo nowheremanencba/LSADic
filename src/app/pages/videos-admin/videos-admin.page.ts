@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CrudService } from 'src/app/services/crud.service';
+import { CategoriaService } from 'src/app/services/categorias.service';
  
 @Component({
   selector: 'app-videos-admin',
@@ -9,13 +10,28 @@ import { CrudService } from 'src/app/services/crud.service';
 export class VideosAdminPage implements OnInit {
  
   students: any;
-  studentName: string;
-  studentAge: number;
-  studentAddress: string;
- 
-  constructor(private crudService: CrudService) { }
+  videoName: string;
+  videoURL: number;
+  videoCategoria: string;
+  categorias: any;
+  categoriaSelected: any;
+
+  constructor(private crudService: CrudService,
+              private catService: CategoriaService
+             ) { }
  
   ngOnInit() {
+    
+    this.catService.getCategorias().subscribe(data => { 
+      this.categorias = data.map( e =>{
+        return {
+          id: e.payload.doc.id,
+          nombre: e.payload.doc.data()['Nombre'],
+        }
+      })
+      console.log(this.categorias); 
+    });
+
     this.crudService.read_Students().subscribe(data => {
  
       this.students = data.map(e => {
@@ -26,21 +42,20 @@ export class VideosAdminPage implements OnInit {
           Age: e.payload.doc.data()['Age'],
           Address: e.payload.doc.data()['Address'],
         };
-      })
-      console.log(this.students);
+      }) 
  
-    });
+    }); 
   }
  
   CreateRecord() {
     let record = {};
-    record['Name'] = this.studentName;
-    record['Age'] = this.studentAge;
-    record['Address'] = this.studentAddress;
-    this.crudService.create_NewStudent(record).then(resp => {
-      this.studentName = "";
-      this.studentAge = undefined;
-      this.studentAddress = "";
+    record['Nombre'] = this.videoName;
+    record['URL'] = this.videoURL;
+   /* record['Categoria'] = this.categoriaSelected;*/
+    this.crudService.create_NewVideo(record).then(resp => {
+      this.videoName = "";
+      this.videoURL = undefined;
+      this.categoriaSelected = "";
       console.log(resp);
     })
       .catch(error => {

@@ -9,7 +9,8 @@ const routes: Routes = [
   { path: 'login', loadChildren: './pages/login/login.module#LoginPageModule' },
   { path: 'register', loadChildren: './pages/register/register.module#RegisterPageModule' },
   { path: 'dashboard', loadChildren: './pages/dashboard/dashboard.module#DashboardPageModule' },
-  { path: 'videos-admin', loadChildren: './pages/videos-admin/videos-admin.module#VideosAdminPageModule' }
+  { path: 'videos-admin', loadChildren: './pages/videos-admin/videos-admin.module#VideosAdminPageModule' },
+  { path: 'visualizador', loadChildren: './pages/visualizador/visualizador.module#VisualizadorPageModule' }
   
 ];
 @NgModule({

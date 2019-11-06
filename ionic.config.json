@@ -1,5 +1,7 @@
 {
   "name": "LSADiccionario",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

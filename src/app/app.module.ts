@@ -21,7 +21,8 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 // Angular Material Module 
 import { AppMaterialModule } from './app-material.module';
 firebase.initializeApp(environment.firebase);
-
+//youtube
+import { YoutubeVideoPlayer } from '@ionic-native/youtube-video-player/ngx';
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -37,6 +38,7 @@ firebase.initializeApp(environment.firebase);
     StatusBar,
     SplashScreen,
     AuthenticationService,
+    YoutubeVideoPlayer,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]
