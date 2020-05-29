@@ -10,5 +10,8 @@ export class CategoriaService {
     getCategorias() {
         return this.firestore.collection('Categorias').snapshotChanges();
       }
+    getCategoriaById(record_id) {
+        return this.firestore.collection('Categorias').doc(record_id); 
+    }
 }
 

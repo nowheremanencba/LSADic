@@ -9,9 +9,9 @@ import { CategoriaService } from 'src/app/services/categorias.service';
 })
 export class VideosAdminPage implements OnInit {
  
-  students: any;
+  videos: any;
   videoName: string;
-  videoURL: number;
+  videoURL: string;
   videoCategoria: string;
   categorias: any;
   categoriaSelected: any;
@@ -32,15 +32,14 @@ export class VideosAdminPage implements OnInit {
       console.log(this.categorias); 
     });
 
-    this.crudService.read_Students().subscribe(data => {
+    this.crudService.read_Videos().subscribe(data => {
  
-      this.students = data.map(e => {
+      this.videos = data.map(e => {
         return {
-          id: e.payload.doc.id,
-          isEdit: false,
-          Name: e.payload.doc.data()['Name'],
-          Age: e.payload.doc.data()['Age'],
-          Address: e.payload.doc.data()['Address'],
+          id: e.payload.doc.id, 
+          Nombre: e.payload.doc.data()['Nombre'],
+          URL: e.payload.doc.data()['URL'],
+          Categoria_nombre: e.payload.doc.data()['Categoria']
         };
       }) 
  
@@ -51,7 +50,7 @@ export class VideosAdminPage implements OnInit {
     let record = {};
     record['Nombre'] = this.videoName;
     record['URL'] = this.videoURL;
-   /* record['Categoria'] = this.categoriaSelected;*/
+    record['Categoria'] = this.categoriaSelected;
     this.crudService.create_NewVideo(record).then(resp => {
       this.videoName = "";
       this.videoURL = undefined;
@@ -63,6 +62,10 @@ export class VideosAdminPage implements OnInit {
       });
   }
  
+  GetCategoriaById(id:string){ 
+    var categ= this.catService.getCategoriaById(id);
+    console.log(categ);
+  }
   RemoveRecord(rowID) {
     this.crudService.delete_Student(rowID);
   }

@@ -12,21 +12,21 @@
     <ion-row>
       <ion-col>
         <ion-item>
-          <ion-input placeholder="Nombre Video" [(ngModel)]="videoNombre"></ion-input>
+          <ion-input placeholder="Nombre Video" [(ngModel)]="videoName"></ion-input>
         </ion-item>
       <ion-item>
         <ion-input placeholder="Url" [(ngModel)]="videoURL"></ion-input>
       </ion-item> 
       <ion-item>
         <ion-select [(ngModel)]="categoriaSelected" ok-text="Aceptar" cancel-text="Cancelar" placeholder="Categoria" >
-            <ion-select-option value="item" *ngFor="let item of categorias">{{item.nombre}}</ion-select-option> 
+            <ion-select-option [value]="item.nombre" *ngFor="let item of categorias">{{item.nombre}}</ion-select-option> 
         </ion-select>
       </ion-item> 
     </ion-col>
     </ion-row>
     <ion-row>
       <ion-col text-center>
-        <ion-button (click)="CreateRecord()" [disabled]="!videoNombre || !videoURL || !categoriaSelected">
+        <ion-button (click)="CreateRecord()" [disabled]="!videoName || !videoURL || !categoriaSelected">
           <ion-icon size="small" slot="icon-only" name="add"></ion-icon>
           &nbsp;Agregar Video
         </ion-button>
@@ -35,11 +35,11 @@
   </ion-grid>
  
  
-  <ion-card *ngFor="let item of students">
-    <span *ngIf="!item.isEdit; else elseBlock">
+  <ion-card *ngFor="let item of videos"> 
       <ion-card-header>
-        <ion-card-title>{{item.Name}} of {{item.Age}} years</ion-card-title>
-        <ion-card-subtitle>From: {{item.Address}}</ion-card-subtitle>
+        <ion-card-title>{{item.Nombre}}</ion-card-title>
+        <ion-card-subtitle>URL: {{item.URL}}</ion-card-subtitle>
+        <ion-card-subtitle>Categoria: {{item.Categoria_nombre}}</ion-card-subtitle> 
       </ion-card-header>
       <ion-card-content>
  
@@ -51,8 +51,7 @@
           <ion-icon size="small" slot="icon-only" name="trash"></ion-icon>
  
         </ion-button>
-      </ion-card-content>
-    </span>
+      </ion-card-content> 
     <ng-template #elseBlock>
       <ion-card-header>
         <ion-card-title>
